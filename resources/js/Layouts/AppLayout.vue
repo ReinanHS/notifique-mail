@@ -22,6 +22,9 @@
                                 <jet-nav-link :href="route('dashboard.index')" :active="route().current('dashboard.index')">
                                     Dashboard
                                 </jet-nav-link>
+                                <jet-nav-link :href="route('dashboard.mailbox.index')" :active="route().current('dashboard.mailbox.index')">
+                                    Caixa de email
+                                </jet-nav-link>
                             </div>
                         </div>
 
@@ -144,6 +147,9 @@
                     <div class="pt-2 pb-3 space-y-1">
                         <jet-responsive-nav-link :href="route('dashboard.index')" :active="route().current('dashboard.index')">
                             Dashboard
+                        </jet-responsive-nav-link>
+                        <jet-responsive-nav-link :href="route('dashboard.mailbox.index')" :active="route().current('dashboard.mailbox.index')">
+                            Caixa de email
                         </jet-responsive-nav-link>
                     </div>
 
