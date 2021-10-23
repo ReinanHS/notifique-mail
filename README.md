@@ -3,10 +3,12 @@
 </p>
 
 <p align="center">
-    <a href="https://github.com/reinanhs" alt="MadeBy">
-        <img src="https://img.shields.io/badge/made%20by-Reinan%20Gabriel-blue" /></a>
-    <a href="https://github.com/reinanhs/gerenciar-veiculos/blob/master/README.md" alt="License">
-        <img src="https://img.shields.io/badge/license-MIT-blue" /></a>
+  <a href="https://github.com/reinanhs" alt="MadeBy"><img src="https://img.shields.io/badge/made%20by-Reinan%20Gabriel-blue?style=for-the-badge" /></a>
+  <a href="https://github.com/ReinanHS/notifique-mail/blob/master/README.md" alt="License"><img src="https://img.shields.io/badge/license-MIT-blue?style=for-the-badge" /></a>
+  <a href="https://github.com/ReinanHS/notifique-mail"><img alt="GitHub top language" src="https://img.shields.io/github/languages/top/reinanhs/notifique-mail?style=for-the-badge"></a>
+  <a href="https://github.com/ReinanHS/notifique-mail"><img alt="GitHub branch checks state" src="https://img.shields.io/github/checks-status/reinanhs/notifique-mail/main?logo=github&style=for-the-badge"></a>
+  <a href="https://codecov.io/gh/ReinanHS/notifique-mail"><img alt="Codecov" src="https://img.shields.io/codecov/c/github/reinanhs/notifique-mail?logo=codecov&style=for-the-badge&token=9EXB4T4MWL"></a>
+  
 </p>
 
 <p align="center">
@@ -14,11 +16,11 @@
 </p>
 
 <p align="center">
-  :star: Contributor :star:
+  :star: Colaboradores :star:
 </p>
 <p align="center">
   <a href="https://github.com/ReinanHS">
-      <img width="50" height="50" src="https://github.com/reinanhs.png">
+      <img width="84" height="84" src="https://github.com/reinanhs.png">
   </a>
 </p>
 
