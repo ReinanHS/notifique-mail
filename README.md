@@ -80,13 +80,45 @@ Depois que os contêineres do **Docker** forem iniciados, você pode acessar o a
   - [Vuex](https://vuex.vuejs.org/)
   - [Vuex-persistedstate](https://www.npmjs.com/package/vuex-persistedstate)
 
-# Testes unitários
+# Ferramentas de qualidade de código
+
+Muitas das vezes os atrasos gerados no desenvolvimento se dão pela identificação tardia de falhas de segurança, o que faz com que o trabalho tenha que retroceder muito. Ter uma análise em tempo real possibilita identificar os problemas durante a fase de desenvolvimento, evitando ter que alterar muito o algoritmo para reparar essa falha.
+
+## PHPUnit - Testes unitários
 
 Você pode executar os testes PHPUnit executando o comando phpunit:
 
-`./vendor/bin/phpunit`
+`sail php ./vendor/bin/phpunit`
 
 O [Teste Unitário](https://www.devmedia.com.br/teste-unitario-com-phpunit/41231) é a primeira abordagem em matéria de confecção de testes mais robustos e confiáveis, a técnica consiste em testar as menores unidades possíveis de código da aplicação em cenários isoladamente em um projeto separado da aplicação principal, o que permite a manutenção e a escalabilidade dos testes em conjunto com a aplicação.
+
+## PHP-CS-Fixer
+
+O [PHP-CS-Fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer) corrige todo o estilo do seu código, quebras, espaços, estilo de declarações etc. É possível definir para que ele siga as PSR-1 e PSR-2, por exemplo. Não obstante, já estão desenvolvendo suporte nele para o mais novo padrão de estilo de código, o PSR-12. E para rodar as correções usando: 
+
+`sail composer fix-style`
+
+## PHP Insights
+
+Ferramenta para análise da qualidade do código. Ele divide a análise em quatro categorias: código, complexidade (complexidade ciclomática etc), arquitetura (tamanho de métodos e classes, entre outras análises) e estilo de código (formatação, padronização).
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/nunomaduro/phpinsights/master/art/preview.png" width="882" alt="PHP Insights Preview">
+</p>
+
+Para verificar o resultado você pode executar o comando:
+
+`sail php ./vendor/bin/phpinsights`
+
+# Pipeline de CI/CD
+
+Um pipeline de CI/CD consiste em uma série de etapas a serem realizadas para a disponibilização de uma nova versão de um software. Os pipelines de integração e entrega contínuas (CI/CD) são uma prática que tem como objetivo acelerar a disponibilização de softwares, adotando a abordagem de DevOps.
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/ohdearapp/gitlab-ci-pipeline-for-laravel/master/pipeline.png" width="882" alt="Pipeline">
+</p>
+
+O projeto usa GitHub Actions para ajudar a automatizar o fluxo de trabalho de desenvolvimento de software de dentro do GitHub. O fluxo de trabalho é implementado no mesmo local onde o código está armazenado e as solicitações pull e os problemas são processados de forma colaborativa. Você pode ver essas implementações em [actions](https://github.com/ReinanHS/notifique-mail/actions/).
 
 # Changelog
 
