@@ -20,5 +20,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [PageController::class, 'welcome'])->name('welcome');
 Route::name('dashboard.')->middleware(['auth:sanctum', 'verified'])->prefix('dashboard')->group(function () {
     Route::get('/', DashboardController::class)->name('index');
+    Route::get('mailbox/iframe/{mail}', [MailboxController::class, 'renderMailContent'])->name('mailbox.iframe');
     Route::resource('mailbox', MailboxController::class)->only(['index']);
 });

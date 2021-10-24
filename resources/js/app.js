@@ -3,8 +3,10 @@ require('./bootstrap');
 import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
+import moment from "moment";
 
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
+moment.locale("pt-br");
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
