@@ -17,7 +17,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth:sanctum')->name('api.')->group(function () {
-    Route::get('/user', [UserApiController::class, 'me'])->name('user.me');
+    Route::get('user/me', [UserApiController::class, 'me'])->name('user.me');
+    Route::get('user', [UserApiController::class, 'index'])->name('user.index');
 
     /*
      |--------------------------------------------------------------------------
@@ -28,5 +29,5 @@ Route::middleware('auth:sanctum')->name('api.')->group(function () {
      |
      */
     Route::get('mail/mailbox/my', MyMailBoxApiController::class)->name('mail.mailbox.my');
-    Route::apiResource('mail', MailApiController::class)->only(['show']);
+    Route::apiResource('mail', MailApiController::class)->only(['show', 'store']);
 });

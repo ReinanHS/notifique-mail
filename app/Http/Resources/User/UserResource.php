@@ -7,6 +7,9 @@ use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @property-read User $resource
+ */
 class UserResource extends JsonResource
 {
     /**
@@ -17,16 +20,11 @@ class UserResource extends JsonResource
      */
     public function toArray($request): array
     {
-        /**
-         * @var User $user
-         */
-        $user = $request->user();
-
         return [
-            'id' => $user->id,
-            'name' => $user->name,
-            'email' => $user->email,
-            'profile_photo_path' => $user->profile_photo_path,
+            'id' => $this->resource->id,
+            'name' => $this->resource->name,
+            'email' => $this->resource->email,
+            'profile_photo_path' => $this->resource->profile_photo_path,
         ];
     }
 }

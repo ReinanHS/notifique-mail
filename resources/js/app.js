@@ -4,6 +4,7 @@ import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
 import moment from "moment";
+import '@vueup/vue-quill/dist/vue-quill.snow.css';
 
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
 moment.locale("pt-br");
