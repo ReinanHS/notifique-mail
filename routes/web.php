@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Web\DashboardController;
+use App\Http\Controllers\Web\Mailbox\MailboxController;
+use App\Http\Controllers\Web\PageController;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [PageController::class, 'welcome'])->name('welcome');
+Route::name('dashboard.')->middleware(['auth:sanctum', 'verified'])->prefix('dashboard')->group(function () {
+    Route::get('/', DashboardController::class)->name('index');
+    Route::resource('mailbox', MailboxController::class)->only(['index']);
 });
