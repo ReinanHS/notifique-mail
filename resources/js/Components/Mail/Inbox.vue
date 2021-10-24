@@ -9,21 +9,35 @@
 
             <ul class="mt-6">
                 <li class="py-5 border-b px-3"
-                    v-for="(mail, index) in mailbox"
+                    v-for="(mail, index) in filterData()"
                     :key="mail.id"
                     :class="(mailContent && mailContent.mail_box.id === mail.id) ? 'bg-indigo-600 text-white' : 'transition hover:bg-indigo-100'"
-                    @click="onClickInBox(mail.id)"
+                    @click="onClickInBox(mail.id, index)"
                     >
                     <a href="#" class="flex justify-between items-center">
                         <h3 class="text-lg font-semibold">{{ mail.user_mail_from.name }}</h3>
                         <div class="flex flex-col items-end ">
                             <p class="text-md text-gray-400">{{ this.fromatDate(mail.created_at) }}</p>
-                            <span class="mt-1 w-2 h-2 bg-blue-400 rounded-full"></span>
+                            <span v-show="mail.is_read === false" class="mt-1 w-2 h-2 bg-blue-400 rounded-full"></span>
                         </div>
                     </a>
-                    <div v-show="mail.is_read === false" class="text-md italic text-gray-400">{{ mail.subject }}</div>
+                    <div class="text-md italic text-gray-400">{{ mail.subject }}</div>
                 </li>
             </ul>
+            <div class="mt-2 mx-2 mb-2 flex flex-col justify-center" v-if="paginationLinks">
+                <div class="rounded-md shadow" v-if="paginationLinks.next">
+                    <button @click="getMailBox(paginationLinks.next)"
+                        class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10">
+                        Próximo
+                    </button>
+                </div>
+                <div class="mt-2" v-if="paginationLinks.prev">
+                    <button @click="getMailBox(paginationLinks.prev)"
+                        class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 md:py-4 md:text-lg md:px-10">
+                        Voltar
+                    </button>
+                </div>
+            </div>
         </section>
         <section v-if="mailContent" class="w-7/12 px-4 flex flex-col bg-white rounded-r-3xl overflow-y-scroll max-h-full">
             <div class="flex justify-between items-center min-box-user border-b-2 mb-8">
@@ -133,21 +147,32 @@ export default {
         fromatDate(value) {
             return moment(value).calendar()
         },
-        onClickInBox(mailId) {
+        onClickInBox(mailId, index) {
             this.mailContent = null;
+            this.mailbox[index].is_read = true;
 
             axios.get(route('api.mail.show', mailId)).then(response => {
                 const mailResponse = response.data;
                 this.mailContent = mailResponse.data;
             })
         },
+        filterData() {
+            return this.mailbox.filter(mail => {
+                return mail.subject.toLowerCase().indexOf(this.search.toLowerCase()) > -1
+                || mail.user_mail_from.name.toLowerCase().indexOf(this.search.toLowerCase()) > -1
+            });
+        },
+        getMailBox(url) {
+            this.mailContent = null;
+            axios.get(url).then(response => {
+                const mailboxResponse = response.data
+                this.mailbox = mailboxResponse.data
+                this.paginationLinks = mailboxResponse.links
+            })
+        }
     },
     mounted() {
-        axios.get(route('api.mail.mailbox.my')).then(response => {
-            const mailboxResponse = response.data
-            this.mailbox = mailboxResponse.data
-            this.paginationLinks = mailboxResponse.links
-        })
+        this.getMailBox(route('api.mail.mailbox.my'))
     }
 }
 </script>
