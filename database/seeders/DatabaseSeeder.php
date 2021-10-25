@@ -17,9 +17,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(10)->create();
+//        User::factory(10)->create();
         MailType::factory(5)->create();
-        Mail::factory(60)->create();
-        MailAttachment::factory(40)->create();
+//        Mail::factory(60)->create();
+//        MailAttachment::factory(40)->create();
     }
 }

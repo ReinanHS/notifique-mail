@@ -4,7 +4,6 @@ namespace App\Mail;
 
 use App\Models\Mail\Mail;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
@@ -13,7 +12,7 @@ class SendMailContent extends Mailable
     use Queueable, SerializesModels;
 
     /**
-     * @var Mail $mail
+     * @var Mail
      */
     protected $mail;
 
