@@ -30,16 +30,16 @@ O objetivo deste programa é notificar o usuário quando um e-mail chega na caix
 
 - E-mail alternativo
 - SMS
-- Push notification
-- Telegram
 
 Além disso, futuramente será implementado o envio de notificações via:
 
 - Whatsapp
 - Ligação por telefone
+- Push notification
+- Telegram
 
 <p align="center">
-  <img src="https://camo.githubusercontent.com/2ad3355b74b639da9248dea8a0dc3c866e9552f06192c9e5fca2e200f3e21028/68747470733a2f2f74656c656772612e70682f66696c652f3439633735373166303638373239343866623062632e706e67"/>
+  <img src="![image](https://user-images.githubusercontent.com/28494067/138642826-d82d3e9f-b286-406e-9440-4cc7c36f16bc.png)"/>
 </p>
 
 # Instalando e atualizando as dependências
