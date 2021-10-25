@@ -30,16 +30,17 @@ O objetivo deste programa é notificar o usuário quando um e-mail chega na caix
 
 - E-mail alternativo
 - SMS
-- Push notification
-- Telegram
 
 Além disso, futuramente será implementado o envio de notificações via:
 
 - Whatsapp
 - Ligação por telefone
+- Push notification
+- Telegram
 
 <p align="center">
-  <img src="https://camo.githubusercontent.com/2ad3355b74b639da9248dea8a0dc3c866e9552f06192c9e5fca2e200f3e21028/68747470733a2f2f74656c656772612e70682f66696c652f3439633735373166303638373239343866623062632e706e67"/>
+  <img src="https://user-images.githubusercontent.com/28494067/138643904-78fe3d87-c62d-4e1b-8062-389040d82b9a.png"/>
+  <img src="https://user-images.githubusercontent.com/28494067/138642826-d82d3e9f-b286-406e-9440-4cc7c36f16bc.png"/>
 </p>
 
 # Instalando e atualizando as dependências
@@ -52,7 +53,7 @@ Clone o repositório no meu Github
 
 Se você estiver desenvolvendo no Linux e o **Docker** já estiver instalado, você pode usar um comando de terminal simples para rodar esse projeto. Você deve executar o seguinte comando em seu terminal:
 
-`./vendor/bin/sail up`
+`composer install && ./vendor/bin/sail up`
 
 Na primeira vez que você executa o comando Sail up, os contêineres de aplicativos do Sail serão construídos em sua máquina. Isso pode levar vários minutos. Não se preocupe, as tentativas subsequentes de iniciar o Sail serão muito mais rápidas.
 
@@ -62,7 +63,7 @@ Antes de iniciar o aplicativo em sua máquina Windows, certifique-se de instalar
 
 Você pode navegar até o diretório do aplicativo e iniciar o Laravel Sail. O Laravel Sail fornece uma interface de linha de comando simples para interagir com a configuração padrão do Docker do Laravel:
 
-`./vendor/bin/sail up`
+`composer install && ./vendor/bin/sail up`
 
 Depois que os contêineres do **Docker** forem iniciados, você pode acessar o aplicativo em seu navegador da web em: [http://localhost](http://localhost)
 
@@ -71,14 +72,10 @@ Depois que os contêineres do **Docker** forem iniciados, você pode acessar o a
 - [Laravel 8](https://laravel.com/)
 - [Jetstream](https://jetstream.laravel.com/2.x/introduction.html) com [Inertia.js](https://inertiajs.com/) + [Vue](https://vuejs.org/)
 - [TailwindCSS](https://tailwindcss.com/)
-- [Laravel WebSockets](https://github.com/beyondcode/laravel-websockets)
-- [Laravel Echo](https://laravel.com/docs/8.x/broadcasting#client-side-installation)
 - [Docker](https://www.docker.com/)
 - [Migrations e Models](https://laravel.com/docs/8.x/migrations)
 - [Controller](https://laravel.com/docs/8.x/controllers#introduction), [Broadcast](https://laravel.com/docs/8.x/broadcasting) e [Events](https://laravel.com/docs/8.x/events#introduction)
 - [Vue.js](https://vuejs.org/)
-  - [Vuex](https://vuex.vuejs.org/)
-  - [Vuex-persistedstate](https://www.npmjs.com/package/vuex-persistedstate)
 
 # Ferramentas de qualidade de código
 
@@ -120,9 +117,19 @@ Um pipeline de CI/CD consiste em uma série de etapas a serem realizadas para a 
 
 O projeto usa GitHub Actions para ajudar a automatizar o fluxo de trabalho de desenvolvimento de software de dentro do GitHub. O fluxo de trabalho é implementado no mesmo local onde o código está armazenado e as solicitações pull e os problemas são processados de forma colaborativa. Você pode ver essas implementações em [actions](https://github.com/ReinanHS/notifique-mail/actions/).
 
-# Changelog
+# Change log!
 
 - [x] Iniciar o projeto
+- [x] Envio de SMS 
+
+# Twilio SMS
+
+Twilio é a plataforma líder de comunicação em nuvem que simplifica e facilita o contato com seus clientes em qualquer lugar. No servidor de demonstração só será possível enviar mensagem para o meu número de telefone porque estou usando uma versão gratuita dessa API.
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/28494067/138644677-5570c3f8-ad38-468a-b990-943deaddda70.jpeg" height="40%">
+</p>
+
 
 # Licença
 
