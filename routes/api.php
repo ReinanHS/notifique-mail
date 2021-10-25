@@ -1,6 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\Mail\MailApiController;
+use App\Http\Controllers\Api\Mail\MyMailBoxApiController;
+use App\Http\Controllers\Api\User\UserApiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +16,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:sanctum')->name('api.')->group(function () {
+    Route::get('user/me', [UserApiController::class, 'me'])->name('user.me');
+    Route::get('user', [UserApiController::class, 'index'])->name('user.index');
+
+    /*
+     |--------------------------------------------------------------------------
+     | Rotas para o Mail
+     |--------------------------------------------------------------------------
+     |
+     | Essas rotas são responsável por fazer todas a parde do gerenciamento dos endereços eletrônicos.
+     |
+     */
+    Route::get('mail/mailbox/my', MyMailBoxApiController::class)->name('mail.mailbox.my');
+    Route::apiResource('mail', MailApiController::class)->only(['show', 'store']);
 });
