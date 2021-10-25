@@ -30,7 +30,7 @@ class ExampleTest extends TestCase
     {
         $subject = 'Teste ' . md5(time());
 
-        $result = Mail::withoutEvents(function () use ($subject){
+        $result = Mail::withoutEvents(function () use ($subject) {
             /**
              * @var MailType $mailType
              */

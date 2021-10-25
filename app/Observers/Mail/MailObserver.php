@@ -28,13 +28,13 @@ class MailObserver
      */
     private function sendSMS(Mail $mail): void
     {
-        try{
+        try {
             $client = new Client(env('TWILIOO_ACCOUNT_SID'), env('TWILIOO_AUTH_TOKEN'));
             $client->messages->create($mail->userMailFrom->phone_number, [
                 'from' => env('TWILIOO_PHONE_NUMBER'),
                 'body' => 'Olá ' . $mail->userMailTo->name . ', você acabou de receber uma mensagem de ' . $mail->userMailFrom->name . '. Para mais informações acesse o site https://mail.reinanhs.com/',
             ]);
-        } catch (\Exception $exception){
+        } catch (\Exception $exception) {
             // TODO: Realizar implementação para tratamentos de erros
         }
     }
