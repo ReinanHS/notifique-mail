@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b173c04f6b3a4cf6cae283c043ef1eb6",
+    "content-hash": "b9789f43470c591b6562622899966a2a",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2422,6 +2422,56 @@
                 }
             ],
             "time": "2021-09-25T08:23:19+00:00"
+        },
+        {
+            "name": "manowartop/repository-service-laravel-pattern",
+            "version": "v1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/manowartop97/repository-service-laravel-pattern.git",
+                "reference": "080538d3eaad6ba6c267636854bb5243759d7c45"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/manowartop97/repository-service-laravel-pattern/zipball/080538d3eaad6ba6c267636854bb5243759d7c45",
+                "reference": "080538d3eaad6ba6c267636854bb5243759d7c45",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^5.0 || ^6.0 || ^7.0 || ^8.0",
+                "illuminate/support": "^5.0 || ^6.0|| ^7.0 || ^8.0",
+                "php": ">=7.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Manowartop\\ServiceRepositoryPattern\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Manowartop",
+                    "email": "manowartop97@gmail.com"
+                }
+            ],
+            "description": "Structure for the Laravel Service-Repository Pattern",
+            "keywords": [
+                "base repository",
+                "base service",
+                "laravel",
+                "repository",
+                "service",
+                "service and repository"
+            ],
+            "support": {
+                "issues": "https://github.com/manowartop97/repository-service-laravel-pattern/issues",
+                "source": "https://github.com/manowartop97/repository-service-laravel-pattern/tree/v1.3"
+            },
+            "time": "2021-07-23T10:35:19+00:00"
         },
         {
             "name": "mobiledetect/mobiledetectlib",
@@ -8371,6 +8421,50 @@
             "time": "2021-07-09T08:23:52+00:00"
         },
         {
+            "name": "lucascudo/laravel-pt-br-localization",
+            "version": "v1.1.10",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lucascudo/laravel-pt-BR-localization.git",
+                "reference": "162e26243da8592a26337c3c55e13ead80358753"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lucascudo/laravel-pt-BR-localization/zipball/162e26243da8592a26337c3c55e13ead80358753",
+                "reference": "162e26243da8592a26337c3c55e13ead80358753",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Lucascudo\\LaravelPtBRLocalization\\LaravelPtBRLocalizationServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Lucascudo\\LaravelPtBRLocalization\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Cascudo",
+                    "email": "lucas.sisau@gmail.com"
+                }
+            ],
+            "description": "Arquivos de linguagem em Português do Brasil (pt-BR) para Laravel >= 5.6",
+            "support": {
+                "issues": "https://github.com/lucascudo/laravel-pt-BR-localization/issues",
+                "source": "https://github.com/lucascudo/laravel-pt-BR-localization/tree/v1.1.10"
+            },
+            "time": "2021-09-07T08:37:58+00:00"
+        },
+        {
             "name": "mockery/mockery",
             "version": "1.4.4",
             "source": {
@@ -11551,7 +11645,8 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.3|^8.0"
+        "php": "^7.3|^8.0",
+        "ext-dom": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.1.0"

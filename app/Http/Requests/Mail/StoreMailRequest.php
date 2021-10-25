@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Mail;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class StoreMailRequest extends FormRequest
 {
@@ -14,6 +15,11 @@ class StoreMailRequest extends FormRequest
     public function authorize(): bool
     {
         return true;
+    }
+
+    public function prepareForValidation(): void
+    {
+        $this->merge(['mail_to' => Auth::user()->email] + $this->all());
     }
 
     /**

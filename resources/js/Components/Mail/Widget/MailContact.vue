@@ -19,36 +19,34 @@
                     </div>
 
                     <div class="mb-4">
-                        <label for="email" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Endereço de
-                            e-mail</label>
+                        <label for="subject" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Assunto</label>
                         <input
-                            v-model="form.email"
-                            type="email"
-                            name="email"
-                            id="email"
-                            placeholder="reinan@mail.reinanhs.com"
+                            v-model="form.subject"
+                            type="text"
+                            name="subject"
+                            id="subject"
+                            placeholder="Digite um assunto"
                             required
-                            disabled
                             class="w-full px-3 py-2 bg-white placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
                         />
-                        <div class="empty-feedback text-red-400 text-sm mt-1">
-                            Por favor, forneça seu endereço de e-mail.
-                        </div>
-                        <div class="invalid-feedback text-red-400 text-sm mt-1">
-                            Por favor, forneça um endereço de e-mail válido.
-                        </div>
                     </div>
 
                     <div class="mb-4">
                         <QuillEditor theme="snow"
                                      v-model:content="form.content"
                                      contentType="html"
-                                     placeholder="Escreva o conteúdo do email aqui" />
-                        <div v-show="error.content" class="text-red-400 text-sm mt-1">{{ error.content }}</div>
+                                     placeholder="Escreva o conteúdo do email aqui"/>
+                    </div>
+
+                    <div v-if="errors" class="mb-3 text-red-400 text-sm mt-1">
+                        <ul v-for="(error, index) in errors" :key="index">
+                            <li v-for="(e, i) in error" :key="`${index}_${i}`">{{ e }}</li>
+                        </ul>
                     </div>
 
                     <div class="mb-3">
                         <button type="submit"
+                                :disabled="is_loading"
                                 class="w-full px-3 py-4 text-white bg-indigo-500 rounded-md focus:bg-indigo-600 focus:outline-none">
                             Enviar mensagem
                         </button>
@@ -101,33 +99,53 @@
 
 <script>
 import SelectMailAddress from "./SelectMailAddress";
-import { QuillEditor } from '@vueup/vue-quill'
+import {QuillEditor} from '@vueup/vue-quill'
 
 export default {
     name: "MailContact",
     components: {SelectMailAddress, QuillEditor},
     data() {
         return {
+            is_loading: false,
             is_open: false,
             form: {
-                email: '',
+                mail_from: null,
+                subject: '',
                 content: '<br><br><br><br><br><br><br><br><br><br><br>',
+                mail_type_id: 1,
             },
-            error: {
-                content: null,
-            },
+            errors: null,
             selectedUser: null,
             users: [],
         }
     },
     methods: {
         sendEmail() {
-            if(!this.validationContent()){
-                this.error.content = 'O conteúdo do seu e-mail não é válido';
+            if (!this.validationContent()) {
+                this.errors = {content: ['O conteúdo do seu e-mail deve ter mais de 15 caracteres.']};
                 return null;
             }
 
-
+            this.is_loading = true;
+            axios.post(route('api.mail.store'), this.form).then(response => {
+                this.form = {
+                    mail_from: null,
+                    subject: '',
+                    content: '',
+                    mail_type_id: 1,
+                }
+                this.is_open = false;
+            }).catch(error => {
+                if (error.response && error.response.status === 422) {
+                    this.errors = error.response.data.errors;
+                } else if (error.response && error.response.data) {
+                    this.errors = {500: [error.response.data.message]};
+                } else {
+                    this.errors = {500: ['Algo de errado não está certo.']};
+                }
+            }).finally(() => {
+                this.is_loading = false;
+            })
         },
         validationContent() {
             let html = this.form.content;
@@ -139,15 +157,15 @@ export default {
         },
         onValueSelect(value) {
             this.selectedUser = value;
-            this.form.email = value.email;
+            this.form.mail_from = value.email;
         },
     },
     mounted() {
         axios.get(route('api.user.index')).then(response => {
-           const userResponse = response.data;
-           this.users = userResponse.data;
-           this.selectedUser = userResponse.data[0];
-           this.form.email = this.selectedUser.email;
+            const userResponse = response.data;
+            this.users = userResponse.data;
+            this.selectedUser = userResponse.data[0];
+            this.form.mail_from = this.selectedUser.email;
         });
     }
 }
