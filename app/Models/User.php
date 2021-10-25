@@ -53,6 +53,8 @@ use Laravel\Sanctum\PersonalAccessToken;
  * @method static Builder|User whereTwoFactorSecret($value)
  * @method static Builder|User whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string $phone_number
+ * @method static Builder|User wherePhoneNumber($value)
  */
 class User extends Authenticatable
 {
@@ -71,6 +73,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phone_number',
     ];
 
     /**
