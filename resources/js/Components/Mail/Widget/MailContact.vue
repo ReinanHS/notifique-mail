@@ -9,7 +9,7 @@
         >
             <div class="bg-gray-50 flex-grow p-6">
 
-                <form class="needs-validation" @submit.prevent.capture="sendEmail">
+                <form class="needs-validation" @submit.prevent.capture="sendEmail" v-if="!is_loading">
                     <div class="mb-4">
                         <SelectMailAddress :data="users"
                                            :value="selectedUser"
@@ -52,6 +52,9 @@
                         </button>
                     </div>
                 </form>
+                <div v-else class="h-full flex justify-center items-center">
+                    <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-purple-500"></div>
+                </div>
             </div>
         </div>
         <button
@@ -129,7 +132,7 @@ export default {
             this.is_loading = true;
             axios.post(route('api.mail.store'), this.form).then(response => {
                 this.form = {
-                    mail_from: null,
+                    mail_from: this.form.mail_from,
                     subject: '',
                     content: '',
                     mail_type_id: 1,
